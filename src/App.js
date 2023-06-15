@@ -1,25 +1,52 @@
-import logo from './logo.svg';
+// App.js
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import MainPage from './MainPage';
+import LoginPage from './LoginPage';
+import CommunityPage from './CommunityPage';
+import ReviewPage from './ReviewPage';
 import './App.css';
+import SignUpPage from './SignUpPage';
+import ReviewCreationPage from './ReviewCreationPage';
+import CommunityCreationPage from './CommunityCreationPage';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="container">
+        <div className="frame">
+          <nav className="menu">
+            <ul>
+              <li>
+                <Link to="/">메인 페이지</Link>
+              </li>
+              <li>
+                <Link to="/community">커뮤니티 페이지</Link>
+              </li>
+              <li>
+                <Link to="/review">리뷰 페이지</Link>
+              </li>
+              <li>
+                <Link to="/login">로그인 페이지</Link>
+              </li>
+            </ul>
+          </nav>
+
+          <div className="main-content">
+            <Routes>
+              <Route path="/" element={<MainPage />} />
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/community" element={<CommunityPage />} />
+              <Route path="/community/create" element={<CommunityCreationPage />} />
+              <Route path="/review" element={<ReviewPage />} />
+              <Route path="/review/create" element={<ReviewCreationPage />} />
+              <Route path="/signup" element={<SignUpPage />} />
+            </Routes>
+          </div>
+        </div>
+      </div>
+    </Router>
   );
-}
+};
 
 export default App;
